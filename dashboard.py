@@ -30,6 +30,7 @@ class DashboardHUD(ctk.CTkFrame):
             node.grid(row=i//2, column=i % 2, padx=20, pady=15, sticky="nsew")
             self.node_widgets[key] = node
 
+        # Button frame starts centered
         self.btn_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.btn_frame.pack(expand=True)
 

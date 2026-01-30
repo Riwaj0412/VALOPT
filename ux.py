@@ -5,7 +5,6 @@ from ctypes import windll
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 ASSETS_PATH = os.path.join(BASE_PATH, "assets")
 
-# Register font so Windows recognizes the name "Orbitron"
 try:
     font_path = os.path.join(ASSETS_PATH, "Orbitron-Regular.ttf")
     windll.gdi32.AddFontResourceExW(font_path, 0x10, 0)
@@ -29,11 +28,16 @@ class SpecNode(ctk.CTkFrame):
     def __init__(self, master, title, icon, value, **kwargs):
         super().__init__(master, fg_color="#0a0a0a", border_color="#ff4655",
                          border_width=2, corner_radius=12, **kwargs)
-        ctk.CTkLabel(self, text=icon, font=("Arial", 35)).pack(pady=(20, 5))
-        ctk.CTkLabel(self, text=title, font=get_font(
-            20), text_color="#ff4655").pack()
-        self.val_label = ctk.CTkLabel(self, text=str(value), font=("Consolas", 12),
-                                      text_color="white", wraplength=250)
+
+        ctk.CTkLabel(self, text=icon, font=(
+            "Segoe UI Symbol", 35)).pack(pady=(20, 5))
+
+        ctk.CTkLabel(self, text=title, font=get_font(20),
+                     text_color="#ff4655").pack()
+
+        # Larger 18pt font for the white text
+        self.val_label = ctk.CTkLabel(self, text=str(value), font=("Consolas", 18),
+                                      text_color="white", wraplength=350)
         self.val_label.pack(pady=(5, 20))
 
     def update_value(self, new_value):
