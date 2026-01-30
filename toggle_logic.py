@@ -1,25 +1,25 @@
-def toggle_specs(app_instance):
-    if not app_instance.is_revealed:
-        # Hide Optimize and move frame to top
-        app_instance.opt_btn.pack_forget()
-        app_instance.btn_frame.pack_forget()
-        app_instance.btn_frame.pack(after=app_instance.title_label, pady=20)
+def toggle_specs(dash):
+    if not dash.is_revealed:
+        dash.opt_btn.pack_forget()
+        dash.btn_frame.pack_forget()
+        dash.btn_frame.pack(after=dash.title_label, pady=20)
 
-        # Show Grid
-        app_instance.grid_container.pack(expand=True, fill="both", padx=60)
-        for key, node in app_instance.node_widgets.items():
-            node.update_value(app_instance.stored_data.get(key, "N/A"))
+        dash.grid_container.pack(expand=True, fill="both", padx=60)
 
-        app_instance.reveal_btn.configure(
+        # Pull data stored in the main app
+        data = dash.app.stored_data
+        for key, node in dash.node_widgets.items():
+            node.update_value(data.get(key, "N/A"))
+
+        dash.reveal_btn.configure(
             text="[ HIDE SPECS ]", fg_color="#00ff7f", text_color="black")
-        app_instance.is_revealed = True
+        dash.is_revealed = True
     else:
-        # Return to Hero view
-        app_instance.grid_container.pack_forget()
-        app_instance.btn_frame.pack_forget()
-        app_instance.btn_frame.pack(expand=True)
-        app_instance.opt_btn.pack(side="left", padx=20)
+        dash.grid_container.pack_forget()
+        dash.btn_frame.pack_forget()
+        dash.btn_frame.pack(expand=True)
+        dash.opt_btn.pack(side="left", padx=20)
 
-        app_instance.reveal_btn.configure(
+        dash.reveal_btn.configure(
             text="[ REVEAL SPECS ]", fg_color="#333333", text_color="white")
-        app_instance.is_revealed = False
+        dash.is_revealed = False

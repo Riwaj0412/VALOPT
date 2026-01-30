@@ -13,8 +13,14 @@ class SplashScreen(ctk.CTkFrame):
         # UI Setup
         ctk.CTkLabel(self, text="VALOPT // PRO", font=ux.get_font(50),
                      text_color="#ff4655").pack(pady=(250, 20))
+
+        # Change text_color to "white" here
         self.status_label = ctk.CTkLabel(
-            self, text="INITIALIZING SCAN...", font=ux.get_font(14))
+            self,
+            text="INITIALIZING SCAN...",
+            font=ux.get_font(14),
+            text_color="white"
+        )
         self.status_label.pack()
 
         self.progress = ctk.CTkProgressBar(

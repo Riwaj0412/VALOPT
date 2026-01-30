@@ -3,43 +3,42 @@ import ux
 from toggle_logic import toggle_specs
 
 
-def build_dashboard(master, app_instance):
-    hud_frame = ctk.CTkFrame(master, fg_color="#0f1923")
-    hud_frame.place(relx=0, rely=0, relwidth=1, relheight=1)
+class DashboardHUD(ctk.CTkFrame):
+    def __init__(self, master_app):
+        super().__init__(master_app, fg_color="#0f1923")
+        self.app = master_app
+        self.place(relx=0, rely=0, relwidth=1, relheight=1)
 
-    app_instance.title_label = ctk.CTkLabel(hud_frame, text="V A L O P T",
-                                            font=ux.get_font(70), text_color="#ff4655")
-    app_instance.title_label.pack(pady=(60, 20))
+        self.is_revealed = False
+        self.node_widgets = {}
 
-    app_instance.grid_container = ctk.CTkFrame(
-        hud_frame, fg_color="transparent")
-    grid = app_instance.grid_container
-    grid.grid_columnconfigure((0, 1), weight=1)
+        self.title_label = ctk.CTkLabel(self, text="V A L O P T",
+                                        font=ux.get_font(70), text_color="#ff4655")
+        self.title_label.pack(pady=(60, 20))
 
-    # Updated Specs List
-    nodes = [
-        ("CORE PROCESSOR", "🖥️", "cpu"), ("SYSTEM MEMORY", "⚡", "ram"),
-        ("OS KERNEL", "💾", "os"), ("GRAPHICS CARD", "🎮", "gpu"),
-        ("DISPLAY MONITOR", "📺", "monitor"), ("ENGINE STATUS", "🚀", "status")
-    ]
+        self.grid_container = ctk.CTkFrame(self, fg_color="transparent")
+        self.grid_container.grid_columnconfigure((0, 1), weight=1)
 
-    for i, (title, icon, key) in enumerate(nodes):
-        node = ux.SpecNode(grid, title, icon, "DATA LOCKED")
-        node.grid(row=i//2, column=i % 2, padx=20, pady=15, sticky="nsew")
-        app_instance.node_widgets[key] = node
+        nodes = [
+            ("CORE PROCESSOR", "🖥️", "cpu"), ("SYSTEM MEMORY", "⚡", "ram"),
+            ("OS KERNEL", "💾", "os"), ("GRAPHICS CARD", "🎮", "gpu"),
+            ("DISPLAY MONITOR", "📺", "monitor"), ("ENGINE STATUS", "🚀", "status")
+        ]
 
-    # Hero Buttons
-    app_instance.btn_frame = ctk.CTkFrame(hud_frame, fg_color="transparent")
-    app_instance.btn_frame.pack(expand=True)
+        for i, (title, icon, key) in enumerate(nodes):
+            node = ux.SpecNode(self.grid_container, title, icon, "DATA LOCKED")
+            node.grid(row=i//2, column=i % 2, padx=20, pady=15, sticky="nsew")
+            self.node_widgets[key] = node
 
-    app_instance.reveal_btn = ctk.CTkButton(app_instance.btn_frame, text="[ REVEAL SPECS ]",
-                                            font=ux.get_font(22), height=70, width=300,
-                                            command=lambda: toggle_specs(app_instance))
-    app_instance.reveal_btn.pack(side="left", padx=20)
+        self.btn_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.btn_frame.pack(expand=True)
 
-    app_instance.opt_btn = ctk.CTkButton(app_instance.btn_frame, text="[ OPTIMIZE ]",
-                                         font=ux.get_font(22), fg_color="#ff4655",
-                                         height=70, width=300)
-    app_instance.opt_btn.pack(side="left", padx=20)
+        self.reveal_btn = ctk.CTkButton(self.btn_frame, text="[ REVEAL SPECS ]",
+                                        font=ux.get_font(22), height=70, width=300,
+                                        command=lambda: toggle_specs(self))
+        self.reveal_btn.pack(side="left", padx=20)
 
-    return hud_frame
+        self.opt_btn = ctk.CTkButton(self.btn_frame, text="[ OPTIMIZE ]",
+                                     font=ux.get_font(22), fg_color="#ff4655",
+                                     height=70, width=300)
+        self.opt_btn.pack(side="left", padx=20)
