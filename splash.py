@@ -13,8 +13,6 @@ class SplashScreen(ctk.CTkFrame):
         # UI Setup
         ctk.CTkLabel(self, text="VALOPT // PRO", font=ux.get_font(50),
                      text_color="#ff4655").pack(pady=(250, 20))
-
-        # Change text_color to "white" here
         self.status_label = ctk.CTkLabel(
             self,
             text="INITIALIZING SCAN...",
@@ -28,11 +26,11 @@ class SplashScreen(ctk.CTkFrame):
         self.progress.set(0)
         self.progress.pack(pady=20)
 
-        # 1. Start hardware scan in a background thread immediately
+        # Start hardware scan in a background thread immediately
         self.data = None
         threading.Thread(target=self.fetch_data, daemon=True).start()
 
-        # 2. Start the smooth animation
+        # Start the smooth animation
         self.animate_progress(0)
 
     def fetch_data(self):
@@ -42,11 +40,11 @@ class SplashScreen(ctk.CTkFrame):
     def animate_progress(self, val):
         if val <= 1.0:
             self.progress.set(val)
-            # Increase/Decrease speed here for "feel"
+            # Increase/Decrease speed of the bar
             new_val = val + 0.015
             self.after(20, lambda: self.animate_progress(new_val))
         else:
-            # 3. Wait for data if the scan is slower than the animation
+            # Wait for data if the scan is slower than the animation
             self.check_completion()
 
     def check_completion(self):

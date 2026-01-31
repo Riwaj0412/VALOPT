@@ -35,7 +35,6 @@ class SpecNode(ctk.CTkFrame):
         ctk.CTkLabel(self, text=title, font=get_font(20),
                      text_color="#ff4655").pack()
 
-        # Larger 18pt font for the white text
         self.val_label = ctk.CTkLabel(self, text=str(value), font=("Consolas", 18),
                                       text_color="white", wraplength=350)
         self.val_label.pack(pady=(5, 20))

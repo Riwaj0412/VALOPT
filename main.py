@@ -20,7 +20,7 @@ class ValOptApp(ctk.CTk):
 
     def show_detected(self, data):
         self.stored_data = data
-        # Clean current UI
+
         for child in self.winfo_children():
             child.destroy()
         DetectedScreen(self, self.show_dashboard)
