@@ -1,5 +1,9 @@
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 .venv/
 .env
 Test.rar
+=======
+.env
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8

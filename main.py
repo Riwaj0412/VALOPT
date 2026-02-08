@@ -5,6 +5,7 @@ from dashboard import DashboardHUD
 from optimize_screen import OptimizeScreen
 from manual_tweak import ManualTweakScreen
 import ux
+<<<<<<< HEAD
 import ctypes
 import sys
 
@@ -21,6 +22,8 @@ if not is_admin():
     ctypes.windll.shell32.ShellExecuteW(
         None, "runas", sys.executable, " ".join(sys.argv), None, 1)
     sys.exit()
+=======
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
 
 
 class ValOptApp(ctk.CTk):

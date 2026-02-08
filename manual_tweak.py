@@ -2,9 +2,12 @@ import customtkinter as ctk
 import ux
 import nvidia_control
 import windows_control
+<<<<<<< HEAD
 import valorant_manager
 import threading
 import time
+=======
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
 
 
 class ManualTweakScreen(ctk.CTkFrame):
@@ -14,13 +17,18 @@ class ManualTweakScreen(ctk.CTkFrame):
         self.on_back = on_back
         self.place(relx=0, rely=0, relwidth=1, relheight=1)
 
+<<<<<<< HEAD
         # Title Section
+=======
+        # Title
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
         ctk.CTkLabel(self, text="MANUAL TWEAKS", font=ux.get_font(50),
                      text_color="#ff4655").pack(pady=(80, 40))
 
         self.btn_frame = ctk.CTkFrame(self, fg_color="transparent")
         self.btn_frame.pack(expand=True)
 
+<<<<<<< HEAD
         # --- IN GAME SETTINGS BUTTON ---
         self.in_game_btn = ctk.CTkButton(
             self.btn_frame,
@@ -37,6 +45,9 @@ class ManualTweakScreen(ctk.CTkFrame):
         self.in_game_btn.pack(pady=15)
 
         # NVIDIA Button [cite: 22, 24]
+=======
+        # NVIDIA Button - Notice the lambda to fix the 'auto-popup'
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
         ctk.CTkButton(
             self.btn_frame, text="[ NVIDIA CONTROL PANEL ]", font=ux.get_font(22),
             fg_color="transparent", border_color="#76b900", border_width=2,
@@ -44,7 +55,11 @@ class ManualTweakScreen(ctk.CTkFrame):
             command=lambda: nvidia_control.launch()
         ).pack(pady=15)
 
+<<<<<<< HEAD
         # Windows Button [cite: 22, 30]
+=======
+        # Windows Button
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
         ctk.CTkButton(
             self.btn_frame, text="[ WINDOWS GRAPHICS SETTINGS ]", font=ux.get_font(22),
             fg_color="transparent", border_color="#0078d4", border_width=2,
@@ -52,6 +67,7 @@ class ManualTweakScreen(ctk.CTkFrame):
             command=lambda: windows_control.launch()
         ).pack(pady=15)
 
+<<<<<<< HEAD
         # Back Button [cite: 22]
         ctk.CTkButton(self, text="< BACK TO HUB", font=ux.get_font(14),
                       command=self.on_back,
@@ -89,3 +105,9 @@ class ManualTweakScreen(ctk.CTkFrame):
             text="[ IN GAME SETTINGS ]",
             fg_color="transparent"
         )
+=======
+        # Back Button
+        ctk.CTkButton(self, text="< BACK TO HUB", font=ux.get_font(14),
+                      fg_color="transparent", text_color="gray",
+                      command=self.on_back).pack(side="bottom", pady=40)
+>>>>>>> 6bee7d2e0e5050d7d93d54d73ece281eb74c38d8
